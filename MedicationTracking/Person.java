@@ -37,7 +37,7 @@ public abstract class Person {
     }
 
     public void setAge(int age) {
-        this.age = age;
+        if (age > 0) this.age = age;
     }
 
     public void setPhoneNumber(String phoneNumber) {
