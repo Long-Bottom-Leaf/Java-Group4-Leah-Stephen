@@ -4,7 +4,7 @@ This is an example menu that is set up to show you a way of structuring your pro
 this doesnt have all requirements in it please refer to the sprint doc to view all requirements
  */
 
-package medicationtracking;
+package MedicationTracking;
 import java.util.Scanner;
 
 public class EmptyMenu {
