@@ -5,6 +5,7 @@ this doesnt have all requirements in it please refer to the sprint doc to view a
  */
 
 package MedicationTracking;
+
 import java.util.Scanner;
 
 public class EmptyMenu {

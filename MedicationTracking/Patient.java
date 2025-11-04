@@ -1,9 +1,11 @@
+package MedicationTracking;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Patient extends Person {
-    private List<Medication> medicationIds;
-    private List<Prescription> prescriptionIds;
+    private List<Medication> medications;
+    private List<Prescription> prescriptions;
     
     public Patient(String name, int age, String phoneNumber) {
         super(name, age, phoneNumber);
@@ -22,10 +24,10 @@ public class Patient extends Person {
 
     // add medication
     public void addMedication(Medication medication) {
-        this.medicationIds.add(medication);
+        this.medications.add(medication);
     }
 
     public void addPrescription(Prescription prescription) {
-        this.prescriptionIds.add(prescription);
+        this.prescriptions.add(prescription);
     }
 }
