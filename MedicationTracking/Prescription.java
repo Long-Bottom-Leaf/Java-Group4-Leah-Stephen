@@ -16,11 +16,11 @@ public class Prescription {
         this.doctor = doctor;
         this.patient = patient;
         this.medication = medication;
-        this.expirationDate = expirationDate;
+        this.expirationDate = LocalDate.now().plusYears(1); // default to one year from now
     }
 
     // Accessors
-    public int getID() {
+    public int getId() {
         return id;
     }
 
@@ -38,5 +38,10 @@ public class Prescription {
 
     public LocalDate getExpirationDate() {
         return expirationDate;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID:%d Doctor:%s Patient:%s Medication:%s Expiry:%s", id, doctor.getName(), patient.getName(), medication.getName(), expirationDate);
     }
 }

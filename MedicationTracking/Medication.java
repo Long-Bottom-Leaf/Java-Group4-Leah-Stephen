@@ -20,7 +20,7 @@ public class Medication {
     }
 
     // Accessors
-    public int getID() {
+    public int getId() {
         return id;
     }
 
@@ -43,5 +43,10 @@ public class Medication {
     // Mutator
     public void setQuantityInStock(int quantityInStock) {
         this.quantityInStock = quantityInStock;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID: %d Name: %s Dose: %s Stock: %d Expiry: %s", id, name, dose, quantityInStock, expirationDate);
     }
 }
