@@ -1,0 +1,157 @@
+Project: Pharmacy Medication Tracking System
+Language: Java
+Developer(s): Leah Murphy and Stephen Fennelly -- Group 4
+Date: Nov 5th, 2025
+
+----------------------------------------------------------
+
+Source Code Directory Structure
+
+Logical folder structure for the project:
+
+PharmacyManagementSystem/
+│
+├── src/
+│   └── medicationtracking/
+│       ├── Person.java
+│       ├── Patient.java
+│       ├── Doctor.java
+│       ├── Medication.java
+│       ├── Prescription.java
+│       ├── MedicationTracking.java
+│       └── EmptyMenu.java
+│
+├── docs/
+│   ├── UserDocumentation.pdf
+│   └── DevelopmentDocumentation.pdf
+│
+├── README.md
+└── .gitignore
+
+Folder details
+
+| Folder                    | Purpose                                                      |
+| ------------------------- | ------------------------------------------------------------ |
+| `/src/medicationtracking` | All core Java classes (source code).                         |
+| `/docs`                   | Contains your documentation deliverables (PDF, Word, etc).   |
+| `README.md`               | Overview of project, instructions for compiling and running. |
+| `.gitignore`              | Ensures compiled `.class` files aren’t uploaded to GitHub.   |
+
+Class and Package Summary (Javadoc Overview)
+
+All source files are part of the package:
+
+    package MedicationTracking
+
+Each class includes Javadoc-style comments to describe its purpose and methods
+
+Example: -- input a class here
+
+
+
+These Javadocs can be compiled into HTML docs useing:
+
+    javadoc -d docs src/MedicationTracking/*.java
+
+Build Process
+
+1. Navigate to the source folder:
+
+    cd PharmacyManagementSystem/src
+
+2. Compile all .java files:
+
+    javac MedicationTracking/*.java
+
+3. Run the program:
+
+    java MedicationTracking.Menu
+
+
+Compiler-Time Dependancies
+
+There are no external dependencies or third-party packages required.
+Everything used is part of the core Java SDK.
+
+| Library                       | Type     | Purpose                                              |
+| ----------------------------- | -------- | ---------------------------------------------------- |
+| `java.util`                   | Built-in | Lists, Scanner input, Random generation              |
+| `java.time`                   | Built-in | Date/time handling for expiry and prescription dates |
+| `java.util.concurrent.atomic` | Built-in | Generates unique incremental IDs safely              |
+
+Development Standards
+
+To maintain consistency and readability:
+
+| Standard               | Description                                                               |
+| ---------------------- | ------------------------------------------------------------------------- |
+| **Naming Conventions** | Classes use PascalCase, variables use camelCase.                          |
+| **File Organization**  | Each class resides in its own `.java` file under the same package.        |
+| **Encapsulation**      | All attributes are `private` or `protected` with getters/setters.         |
+| **Javadoc Comments**   | Each class and method has descriptive documentation.                      |
+| **Error Handling**     | Input is validated using `Scanner` checks and exceptions where necessary. |
+| **No Hardcoding**      | IDs are auto-generated with `AtomicInteger`.                              |
+
+Theoretical Database Design
+
+While this project does not implement a database, the entities within the program have been structured so they can easily
+map to relational tables in a real world scenario.
+
+Diagram:
+
+[Doctor] 1 --- * [Prescription] * --- 1 [Patient]
+                        |
+                        *
+                   [Medication]
+
+Potential Table Structure
+
+Doctor:
+
+| Column         | Type     | Description       |
+| -------------- | -------- | ----------------- |
+| doctor_id      | INT (PK) | Unique doctor ID  |
+| name           | VARCHAR  | Doctor’s name     |
+| age            | INT      | Age               |
+| phone          | VARCHAR  | Contact number    |
+| specialization | VARCHAR  | Area of expertise |
+
+Patient:
+
+| Column     | Type     |
+| ---------- | -------- |
+| patient_id | INT (PK) |
+| name       | VARCHAR  |
+| age        | INT      |
+| phone      | VARCHAR  |
+
+Medication:
+
+| Column        | Type     |
+| ------------- | -------- |
+| medication_id | INT (PK) |
+| name          | VARCHAR  |
+| dose          | VARCHAR  |
+| quantity      | INT      |
+| expiry_date   | DATE     |
+
+Prescription:
+
+| Column              | Type     | Description                    |
+| ------------------- | -------- | ------------------------------ |
+| prescription_id     | INT (PK) | Unique ID                      |
+| doctor_id           | INT (FK) | Linked to `Doctor`             |
+| patient_id          | INT (FK) | Linked to `Patient`            |
+| medication_id       | INT (FK) | Linked to `Medication`         |
+| prescription_expiry | DATE     | Defaults to 1 year after issue |
+
+Entity Relationships
+
+| Relationship              | Description                                                   |
+| ------------------------- | ------------------------------------------------------------- |
+| Doctor → Patient          | One doctor can manage multiple patients.                      |
+| Patient → Prescription    | One patient can have multiple prescriptions.                  |
+| Prescription → Medication | Each prescription references one medication.                  |
+| Medication                | Independent table used in prescriptions and stock management. |
+
+
