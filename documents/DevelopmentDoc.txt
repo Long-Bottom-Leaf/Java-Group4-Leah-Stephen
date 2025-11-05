@@ -9,10 +9,9 @@ Source Code Directory Structure
 
 Logical folder structure for the project:
 
-PharmacyManagementSystem/
+JAVA-GROUP4-LEAH-STEPHEN/
 │
-├── src/
-│   └── medicationtracking/
+├── MedicationTracking/
 │       ├── Person.java
 │       ├── Patient.java
 │       ├── Doctor.java
@@ -32,7 +31,7 @@ Folder details
 
 | Folder                    | Purpose                                                      |
 | ------------------------- | ------------------------------------------------------------ |
-| `/src/medicationtracking` | All core Java classes (source code).                         |
+| `/MedicationTracking`     | All core Java classes (source code).                         |
 | `/docs`                   | Contains your documentation deliverables (PDF, Word, etc).   |
 | `README.md`               | Overview of project, instructions for compiling and running. |
 | `.gitignore`              | Ensures compiled `.class` files aren’t uploaded to GitHub.   |
@@ -51,13 +50,13 @@ Example: -- input a class here
 
 These Javadocs can be compiled into HTML docs useing:
 
-    javadoc -d docs src/MedicationTracking/*.java
+    javadoc -d docs /MedicationTracking/*.java
 
 Build Process
 
 1. Navigate to the source folder:
 
-    cd PharmacyManagementSystem/src
+    cd JAVA-GROUP4-LEAH-STEPHEN
 
 2. Compile all .java files:
 
@@ -83,14 +82,16 @@ Development Standards
 
 To maintain consistency and readability:
 
-| Standard               | Description                                                               |
-| ---------------------- | ------------------------------------------------------------------------- |
-| **Naming Conventions** | Classes use PascalCase, variables use camelCase.                          |
-| **File Organization**  | Each class resides in its own `.java` file under the same package.        |
-| **Encapsulation**      | All attributes are `private` or `protected` with getters/setters.         |
-| **Javadoc Comments**   | Each class and method has descriptive documentation.                      |
-| **Error Handling**     | Input is validated using `Scanner` checks and exceptions where necessary. |
-| **No Hardcoding**      | IDs are auto-generated with `AtomicInteger`.                              |
+| Standard               | Description                                                        |
+| ---------------------- | ------------------------------------------------------------------ |
+| **Naming Conventions** | Classes use PascalCase, variables and methods use camelCase.       |
+| **File Organization**  | Each class resides in its own `.java` file under the same package. |
+| **Encapsulation**      | All attributes are `private` or `protected` with getters/setters.  |
+| **Javadoc Comments**   | Each class and method includes documentation comments.             |
+| **Error Handling**     | Input validated with `Scanner` checks and exception handling.      |
+| **No Hardcoding**      | IDs auto-generated with `AtomicInteger`.                           |
+| **Formatting**         | 4-space indentation, consistent braces, clear spacing.             |
+| **Version Control**    | GitHub used for commits and collaboration.                         |
 
 Theoretical Database Design
 
@@ -154,4 +155,36 @@ Entity Relationships
 | Prescription → Medication | Each prescription references one medication.                  |
 | Medication                | Independent table used in prescriptions and stock management. |
 
+Github Access
 
+To share and collaborate, this project uses Git and Github.
+
+Initialize the Repository:
+
+    git init
+    git add .
+    git commit -m "Initial commit - Pharmacy Medication Tracking System"
+
+Connecting to GitHub:
+
+    git remote add origin https://github.com/<username>/JAVA-GROUP4-LEAH-STEPHEN.git
+    git push -u origin main
+
+Cloning Instructions for Other Developers:
+
+    git clone https://github.com/<username>/JAVA-GROUP4-LEAH-STEPHEN.git
+    cd JAVA-GROUP4-LEAH-STEPHEN
+    javac MedicationTracking/*.java
+    java MedicationTracking.Menu
+
+Summary
+
+This documentation provides a full development overview of the Pharmacy Medication Tracking System, covering:
+
+- Source structure and build process
+- Javadoc and class design
+- Theoretical database schema
+- GitHub repository setup
+- Coding conventions and testing notes
+
+With this information, another developer could clone, compile, understand, and extend the system with minimal setup time.
