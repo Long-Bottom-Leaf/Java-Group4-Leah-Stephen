@@ -27,7 +27,7 @@ public class Doctor extends Person {
         this.specialization = specialization;
     }
 
-    public void addPatient(Patient patient) {
+    public void addANewPatient(Patient patient) {
         this.patients.add(patient);
     }
 }
