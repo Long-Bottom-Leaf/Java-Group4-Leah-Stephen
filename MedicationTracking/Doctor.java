@@ -50,4 +50,10 @@ public class Doctor extends Person {
     public void addANewPatient(Patient patient) {
         this.patients.add(patient);
     }
+
+    @Override
+    public String toString() {
+        return String.format("Doctor ID:%d Name:%s Specialization:%s Patients:%d", 
+                            getId(), getName(), specialization, patients.size());
+    }
 }

@@ -26,7 +26,14 @@ public class Medication {
         this.name = name;
         this.dose = dose;
         this.quantityInStock = quantityInStock;
-        this.expirationDate = expirationDate;
+        
+        // Assign random past expiry if none is provided
+        if (expirationDate == null) {
+            int randomDaysAgo = (int) (Math.random() * 1000); // up to ~3 years ago
+            this.expirationDate = LocalDate.now().minusDays(randomDaysAgo);
+        } else {
+            this.expirationDate = expirationDate;
+        }
     }
 
     /** @return the unique medication ID */
