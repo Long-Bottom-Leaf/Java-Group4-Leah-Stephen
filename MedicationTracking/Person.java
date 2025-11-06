@@ -1,5 +1,3 @@
-package MedicationTracking;
-
 import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class Person {

@@ -1,11 +1,9 @@
-package MedicationTracking;
-
 import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Menu {
     public static void main(String[] args) {
-        MedicationTracking system = new MedicationTracking();
+        MedicationTrackingSystem system = new MedicationTrackingSystem();
         boolean exit = false;
 
         Scanner scanner = new Scanner(System.in);
