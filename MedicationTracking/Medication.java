@@ -72,7 +72,6 @@ public class Medication {
 
     @Override
     public String toString() {
-        return String.format("ID: %d Name: %s Dose: %s Stock: %d Expiry: %s",
-                id, name, dose, quantityInStock, expirationDate);
+        return String.format("ID: %d Name: %s Dose: %s Stock: %d Expiry: %s", id, name, dose, quantityInStock, expirationDate);
     }
 }

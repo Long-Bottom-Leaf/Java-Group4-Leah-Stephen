@@ -53,7 +53,6 @@ public class Doctor extends Person {
 
     @Override
     public String toString() {
-        return String.format("Doctor ID:%d Name:%s Specialization:%s Patients:%d", 
-                            getId(), getName(), specialization, patients.size());
+        return String.format("Doctor ID:%d Name:%s Specialization:%s Patients:%d", getId(), getName(), specialization, patients.size());
     }
 }

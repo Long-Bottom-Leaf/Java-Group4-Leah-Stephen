@@ -57,7 +57,6 @@ public class Prescription {
 
     @Override
     public String toString() {
-        return String.format("ID:%d Doctor:%s Patient:%s Medication:%s Expiry:%s",
-                id, doctor.getName(), patient.getName(), medication.getName(), expirationDate);
+        return String.format("ID:%d Doctor:%s Patient:%s Medication:%s Expiry:%s", id, doctor.getName(), patient.getName(), medication.getName(), expirationDate);
     }
 }
