@@ -70,6 +70,14 @@ public class Medication {
         this.quantityInStock = quantityInStock;
     }
 
+    public void setNewExp(LocalDate expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public void setDose(String dose) {
+        this.dose = dose;
+    }
+
     @Override
     public String toString() {
         return String.format("ID: %d Name: %s Dose: %s Stock: %d Expiry: %s", id, name, dose, quantityInStock, expirationDate);

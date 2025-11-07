@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Menu {
     public static void main(String[] args) {
-        MedicationTrackingSystem system = new MedicationTrackingSystem();
+        MedicationTracking system = new MedicationTracking();
         boolean exit = false;
 
         Scanner scanner = new Scanner(System.in);
@@ -68,16 +68,25 @@ public class Menu {
         System.out.print("Enter patient name: ");
         String patientName = scanner.nextLine();
         Patient patient = system.searchPatientName(patientName);
-
-
+        system.listAllScriptsForPatient(patient);
     }
 
     private static void restockPharmacyDrugs(Scanner scanner, MedicationTracking system) {
-        // TODO: implement
+        System.out.print("Enter medication name: ");
+        String medName = scanner.nextLine();
+        Medication medication = system.searchMedName(medName);
+        System.out.print("Enter order quantity: ");
+        int orderQuant = scanner.nextInt();
+        scanner.nextLine();
+        
+        system.restockMedication(medication, orderQuant);
     }
 
     private static void printScriptsForSpecificDoctor(Scanner scanner, MedicationTracking system) {
-        // TODO: implement
+        System.out.print("Enter doctor name: ");
+        String docName = scanner.nextLine();
+        Doctor doctor = system.searchDoctorName(docName);
+        system.listAllScriptsForDoctor(doctor);
     }
 
     private static void processANewScript(Scanner scanner, MedicationTracking system) {
@@ -97,28 +106,86 @@ public class Menu {
 
         Prescription prescription = new Prescription(doctor, patient, med, expiry);
 
-        system.addScriptToPatient(patient, prescription);
+        system.addScriptToPatient(prescription);
 
         System.out.println("Prescription added successfully!");
     }
 
     private static void checkExpiredMeds(MedicationTracking system) {
-        // TODO: implement
+        system.getExpiredMeds();
     }
 
     private static void printPharmacyReport(MedicationTracking system) {
-        // TODO: implement
+        system.generateFullReport();
     }
 
     private static void addNewMedicationToPharmacy(Scanner scanner, MedicationTracking system) {
-        // TODO: implement
+    System.out.print("Enter medication name: ");
+    String name = scanner.nextLine();
+
+    System.out.print("Enter medication dose (e.g., 500mg): ");
+    String dose = scanner.nextLine();
+
+    int quantity = 0;
+    while (true) {
+        System.out.print("Enter quantity available: ");
+        if (scanner.hasNextInt()) {
+            quantity = scanner.nextInt();
+            scanner.nextLine();
+            if (quantity >= 0) break;
+            else System.out.println("Quantity must be zero or positive.");
+        } else {
+            System.out.println("Please enter a valid integer.");
+            scanner.nextLine();
+        }
     }
 
+    LocalDate expirationDate = null;
+    while (true) {
+        System.out.print("Enter expiration date (YYYY-MM-DD): ");
+        String expStr = scanner.nextLine();
+        try {
+            expirationDate = LocalDate.parse(expStr);
+            break;
+        } catch (Exception e) {
+            System.out.println("Invalid date format. Please enter in YYYY-MM-DD format.");
+        }
+    }
+
+    Medication medication = new Medication(name, dose, quantity, expirationDate);
+    system.createMedication(medication);
+
+    System.out.println("Medication added successfully!");
+}
+
+
     private static void addANewDoctor(Scanner scanner, MedicationTracking system) {
-        // TODO: implement
+        System.out.print("Enter doctor name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter doctor age: ");
+        int age = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+        System.out.print("Enter phone number: ");
+        String phone = scanner.nextLine();
+        System.out.print("Enter doctor specializatoin: ");
+        String specialization = scanner.nextLine();
+
+        Doctor doctor = new Doctor(name, age, phone, specialization);
+
+        system.createDoctor(doctor);
     }
 
     private static void addANewPatient(Scanner scanner, MedicationTracking system) {
-        // TODO: implement
+        System.out.print("Enter patient name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter patient age: ");
+        int age = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+        System.out.print("Enter phone number: ");
+        String phone = scanner.nextLine();
+
+        Patient patient = new Patient(name, age, phone);
+
+        system.createPatient(patient);
     }
 }
