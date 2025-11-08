@@ -1,3 +1,5 @@
+package MedicationTracking;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**

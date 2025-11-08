@@ -1,9 +1,11 @@
+package MedicationTracking;
+
 import java.time.LocalDate;
 
 public class MedicationTrackingTest {
     public static void main(String[] args) {
         // Initialize system
-        MedicationTrackingSystem system = new MedicationTrackingSystem();
+        MedicationTracking system = new MedicationTracking();
 
         // Create test doctors
         Doctor doc1 = new Doctor("Dr. Alice Smith", 45, "555-1234", "Cardiology");
@@ -18,12 +20,12 @@ public class MedicationTrackingTest {
         Medication med2 = new Medication("Ibuprofen", "200mg", 200, LocalDate.of(2025, 1, 15));
 
         // Add to system
-        system.addDoctor(doc1);
-        system.addDoctor(doc2);
-        system.addPatient(pat1);
-        system.addPatient(pat2);
-        system.addMedication(med1);
-        system.addMedication(med2);
+        system.createDoctor(doc1);
+        system.createDoctor(doc2);
+        system.createPatient(pat1);
+        system.createPatient(pat2);
+        system.createMedication(med1);
+        system.createMedication(med2);
 
         // Assign a patient to a doctor
         system.addPatientToDoc(doc1.name, pat1);
@@ -31,10 +33,10 @@ public class MedicationTrackingTest {
 
         // Issue a prescription
         Prescription presc1 = new Prescription(doc2, pat2, med2, LocalDate.now().plusMonths(6));
-        system.addScriptToPatient(pat2, presc1);
+        system.addScriptToPatient(presc1);
         
         Prescription presc2 = new Prescription(doc1, pat1, med1, LocalDate.now().plusMonths(3));
-        system.addScriptToPatient(pat1, presc2);
+        system.addScriptToPatient(presc2);
 
         // Search for a doctor
         Doctor searchDoc = system.searchDoctorName("Dr. Alice Smith");
