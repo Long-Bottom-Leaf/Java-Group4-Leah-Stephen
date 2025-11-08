@@ -97,11 +97,20 @@ Class Diagram
 | + listAllScriptsForPatient()        |
 +-------------------------------------+
 
-+----------------+
-|     Menu       |
-+----------------+
-| + main()       |
-+----------------+
++---------------------------+
+|          Menu             |
++---------------------------+
+| + main()                  |
+| + addANewPatient()        |
+| + addANewDoctor()         |
+| + addNewMedicationToPharmacy() |
+| + processANewScript()     |
+| + printPharmacyReport()   |
+| + checkExpiredMeds()      |
+| + restockPharmacyDrugs()  |
+| + printScriptsForSpecificDoctor() |
+| + printAllScriptsForPatientByName() |
++---------------------------+
 
 ----------------------------------------------------------
 User Interface Menu
