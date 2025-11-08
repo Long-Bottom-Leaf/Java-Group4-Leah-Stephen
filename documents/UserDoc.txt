@@ -108,16 +108,16 @@ User Interface Menu
 
 When running the application, the console presents the following options:
 
-1.  Add A New Patient  
-2.  Add A New Doctor  
-3.  Add A New Medication To The Pharmacy  
-4.  Print System Report  
-5.  Check If Meds Are Expired  
-6.  Process A New Prescription  
-7.  Print All Scripts For Specific Doctor  
-8.  Restock the Drugs in the Pharmacy  
-9.  Print All Scripts For Specific Patient  
-10. Exit  
+1.  Add A New Patient
+2.  Add A New Doctor
+3.  Add A New Medication To The Pharmacy
+4.  Print System Report
+5.  Check If Meds Are Expired
+6.  Process A New Prescription
+7.  Print All Scripts For Specific Doctor
+8.  Restock the Drugs in the Pharmacy
+9.  Print All Scripts For Specific Patient
+10. Exit
 
 ----------------------------------------------------------
 Example Console Output
@@ -133,9 +133,9 @@ What would you like to do?
 ...
 Enter option: 6
 
-Enter patient name: Jimmy John  
-Enter doctor name: Dr. Alice Smith  
-Enter medication name: Amoxicillin  
+Enter patient name: Jimmy John
+Enter doctor name: Dr. Alice Smith
+Enter medication name: Amoxicillin
 Prescription added successfully!
 
 ----------------------------------------------------------
@@ -154,21 +154,21 @@ Example Test Cases
 ----------------------------------------------------------
 Usage Instructions
 
-1. Open a terminal or command prompt.  
-2. Navigate to the project folder:  
-       cd JAVA-GROUP4-LEAH-STEPHEN  
-3. Compile the program:  
-       javac MedicationTracking/*.java  
-4. Run the menu system:  
-       java MedicationTracking.Menu  
+1. Open a terminal or command prompt.
+2. Navigate to the project folder:
+       cd JAVA-GROUP4-LEAH-STEPHEN
+3. Compile the program:
+       javac MedicationTracking/*.java
+4. Run the menu system:
+       java MedicationTracking.Menu
 5. Follow the on-screen instructions to interact with the system.
 
 ----------------------------------------------------------
 Error Handling
 
-- Invalid menu inputs are caught and prompt re-entry.  
-- Quantity and date fields are validated with appropriate messages.  
-- Restock and prescription functions include null and range checks.  
+- Invalid menu inputs are caught and prompt re-entry.
+- Quantity and date fields are validated with appropriate messages.
+- Restock and prescription functions include null and range checks.
 - Expiry date detection handled automatically using `LocalDate.now()`.
 
 ----------------------------------------------------------
