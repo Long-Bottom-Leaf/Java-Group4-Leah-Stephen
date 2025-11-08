@@ -1,28 +1,31 @@
 Project Overview
 
-The Medication Tracking system is a Java based application designed to simulate the management of patients, doctors, medications, and prescriptions
-with a pharmacy or medical clinic. In this project we demonstrate Object-Oriented Programming principles such as inheritance, encapsulation,
+The Medication Tracking System is a Java-based console application that simulates the management of patients, doctors, medications, and prescriptions
+within a pharmacy or medical clinic. The project demonstrates Object-Oriented Programming principles such as inheritance, encapsulation,
 composition, and modularity.
 
 The system allows users to:
 
-    - Add and manage patients, doctors, medications
+    - Add and manage patients, doctors, and medications
     - Create prescriptions linking doctors, patients, and medications
     - Check for expired medications
-    - Generate summary reports and perform basic system queries
+    - Restock medications
+    - Generate summary reports and perform searches
 
+----------------------------------------------------------
 System Architecture
 
-| Class                      | Description          | Key Responsibilities                                           |
-| -------------------------- | -------------------- | -------------------------------------------------------------- |
-| `Person`                   | Abstract base class  | Provides shared fields and methods for `Doctor` and `Patient`. |
-| `Patient`                  | Subclass of `Person` | Stores patient details, medications, and prescriptions.        |
-| `Doctor`                   | Subclass of `Person` | Stores doctor information and their list of patients.          |
-| `Medication`               | Independent entity   | Holds medication data, including quantity and expiry date.     |
-| `Prescription`             | Composition class    | Links a doctor, patient, and medication together.              |
-| `MedicationTrackingSystem` | Core manager class   | Stores collections and manages CRUD operations.                |
-| `EmptyMenu`                | Entry point          | Provides a console-based user interface for interaction.       |
+| Class                  | Description          | Key Responsibilities                                           |
+| ---------------------- | -------------------- | -------------------------------------------------------------- |
+| `Person`               | Abstract base class  | Provides shared fields and methods for `Doctor` and `Patient`. |
+| `Patient`              | Subclass of `Person` | Stores patient details, medications, and prescriptions.        |
+| `Doctor`               | Subclass of `Person` | Stores doctor information and their list of patients.          |
+| `Medication`           | Independent entity   | Holds medication data, including quantity and expiry date.     |
+| `Prescription`         | Composition class    | Links a doctor, patient, and medication together.              |
+| `MedicationTracking`   | Core manager class   | Manages CRUD operations, search, and reporting.                |
+| `Menu`                 | Entry point          | Provides a console-based user interface for interaction.       |
 
+----------------------------------------------------------
 Class Diagram
 
                +-------------------+
@@ -56,10 +59,10 @@ Class Diagram
 | - name: String     |
 | - dose: String     |
 | - quantity: int    |
-| - expiryDate: LocalDate |
+| - expirationDate: LocalDate |
 +--------------------+
-| + isExpired()      |
-| + restock()        |
+| + setQuantity()    |
+| + setNewExp()      |
 +--------------------+
 
 +---------------------+
@@ -69,70 +72,108 @@ Class Diagram
 | - doctor: Doctor    |
 | - patient: Patient  |
 | - medication: Medication |
-| - expiryDate: LocalDate  |
+| - expirationDate: LocalDate  |
++---------------------+
+| + getDoctor()       |
+| + getPatient()      |
 +---------------------+
 
 +-------------------------------------+
-|     MedicationTrackingSystem        |
+|     MedicationTracking              |
 +-------------------------------------+
 | - doctors: List<Doctor>             |
 | - patients: List<Patient>           |
 | - medications: List<Medication>     |
 | - prescriptions: List<Prescription> |
 +-------------------------------------+
-| + addPatient()                      |
 | + addDoctor()                       |
+| + addPatient()                      |
 | + addMedication()                   |
-| + addPrescription()                 |
-| + generateReport()                  |
-| + checkForExpiredMedications()      |
-| + restockMedications()              |
+| + addScriptToPatient()              |
+| + restockMedication()               |
+| + generateFullReport()              |
+| + getExpiredMeds()                  |
+| + listAllScriptsForDoctor()         |
+| + listAllScriptsForPatient()        |
 +-------------------------------------+
 
 +----------------+
-|   EmptyMenu    |  -- need to insert data here when finished with menu
+|     Menu       |
 +----------------+
 | + main()       |
 +----------------+
 
+----------------------------------------------------------
 User Interface Menu
 
-1           Add new patient
-2           Add new doctor
-3           Add new medication
-4           Generate full system report
-5           Check for expired medications
-6           Create a new prescription
-7           View prescriptions by doctor
-8           Restock all medications
-9           View prescriptions by patient
-10          Exit the system
+When running the application, the console presents the following options:
 
+1.  Add A New Patient  
+2.  Add A New Doctor  
+3.  Add A New Medication To The Pharmacy  
+4.  Print System Report  
+5.  Check If Meds Are Expired  
+6.  Process A New Prescription  
+7.  Print All Scripts For Specific Doctor  
+8.  Restock the Drugs in the Pharmacy  
+9.  Print All Scripts For Specific Patient  
+10. Exit  
+
+----------------------------------------------------------
 Example Console Output
 
-===== Pharmacy Med Tracking System =====
-1: Add New Patient
-2: Add New Doctor
-3: Add New Medication
+===== Welcome To The Pharmacy Med Tracking System =====
+What would you like to do?
+1: Add A New Patient
+2: Add A New Doctor
+3: Add A New Medication To The Pharmacy
+4: Print System Report
+5: Check If Meds Are Expired
+6: Process A New Prescription
 ...
 Enter option: 6
 
-Doctor Name: Dr. Adams
-Patient Name: John Doe
-Medication Name: Amoxicillin
+Enter patient name: Jimmy John  
+Enter doctor name: Dr. Alice Smith  
+Enter medication name: Amoxicillin  
 Prescription added successfully!
 
-Test Examples       --- change/add/remove depending on our tests
+----------------------------------------------------------
+Example Test Cases
 
-| Test Case           | Input                        | Expected Output                 |
-| ------------------- | ---------------------------- | ------------------------------- |
-| Add Patient         | Name: John Doe, Age: 40      | Patient successfully added      |
-| Add Doctor          | Dr. Smith, Cardiology        | Doctor successfully added       |
-| Add Medication      | Tylenol, 500mg, 100          | Medication added                |
-| Create Prescription | Dr. Smith, John Doe, Tylenol | Prescription added successfully |
-| Check Expired Meds  | —                            | Displays expired meds if any    |
+| Test Case           | Input                                 | Expected Output                 |
+| ------------------- | ------------------------------------- | ------------------------------- |
+| Add Patient         | Name: John Doe, Age: 40               | Patient successfully added      |
+| Add Doctor          | Dr. Smith, Cardiology                 | Doctor successfully added       |
+| Add Medication      | Tylenol, 500mg, 100, 2026-12-01       | Medication added successfully   |
+| Create Prescription | Dr. Smith, John Doe, Tylenol          | Prescription added successfully |
+| Check Expired Meds  | —                                     | Displays expired meds if any    |
+| Restock Medication  | Ibuprofen, Order Quantity: 50         | Updated stock shown             |
+| Generate Report     | —                                     | Lists all doctors/patients/etc. |
 
+----------------------------------------------------------
+Usage Instructions
+
+1. Open a terminal or command prompt.  
+2. Navigate to the project folder:  
+       cd JAVA-GROUP4-LEAH-STEPHEN  
+3. Compile the program:  
+       javac MedicationTracking/*.java  
+4. Run the menu system:  
+       java MedicationTracking.Menu  
+5. Follow the on-screen instructions to interact with the system.
+
+----------------------------------------------------------
+Error Handling
+
+- Invalid menu inputs are caught and prompt re-entry.  
+- Quantity and date fields are validated with appropriate messages.  
+- Restock and prescription functions include null and range checks.  
+- Expiry date detection handled automatically using `LocalDate.now()`.
+
+----------------------------------------------------------
 Conclusion
 
-This project demonstrates an effective application of OOP principles in Java through a realistic and structured system.
-It highlights relationships, modularity, and maintainability, making it a solid foundation for expansion into a professional-grade application.
+This project demonstrates a complete implementation of Object-Oriented Programming principles in Java.
+It provides a realistic simulation of a pharmacy management system and is designed for maintainability and future database integration.
+With a clean architecture, modular design, and intuitive user interface, this program serves as a robust foundation for future development.
