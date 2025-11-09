@@ -131,6 +131,7 @@ public class MedicationTracking {
             doctor.getPatients().add(patient);
             if (!patients.contains(patient)) {
                 patients.add(patient);
+                System.out.println("Patient " + patient.getName() + " assigned to Dr. " + doctor.getName() + ".");
             }
         } else {
             System.out.println("Error: Doctor not found.");
@@ -189,6 +190,7 @@ public class MedicationTracking {
         }
 
         System.out.println("====================================\n");
+        System.out.println();
     }
 
     /** Checks all medications for expiry */
@@ -207,6 +209,7 @@ public class MedicationTracking {
         if (!foundExpired) {
             System.out.println("No expired medications found.");
         }
+        System.out.println("====================================\n");
     }
 
     /** Lists all prescriptions for a specific doctor */
@@ -229,6 +232,9 @@ public class MedicationTracking {
         if (!scriptFound) {
             System.out.println("No prescriptions found.");
         }
+
+        System.out.println("====================================\n");
+        System.out.println();
     }
 
     public void listAllScriptsForPatient(Patient patient) {
@@ -250,6 +256,8 @@ public class MedicationTracking {
         if (!scriptFound) {
             System.out.println("No prescriptions found.");
         }
+        System.out.println("====================================\n");
+        System.out.println();
     }
 
     /** Restocks a medication */
